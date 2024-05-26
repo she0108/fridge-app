@@ -1,7 +1,7 @@
-export default function FoodItem({ name, dday }) {
-  function ddayToString(dday) {
-    if (dday > 0) return `D-${dday}`;
-    else if (dday < 0) return `D+${-dday}`;
+export default function FoodItem({ name, dayleft }) {
+  function dayleftToDday(dayleft) {
+    if (dayleft > 0) return `D-${dayleft}`;
+    else if (dayleft < 0) return `D+${-dayleft}`;
     else return `D-DAY`;
   }
 
@@ -17,7 +17,7 @@ export default function FoodItem({ name, dday }) {
       />
       <p className="text-base font-medium text-center mb-1">{name}</p>
       <span className="px-1.5 rounded-full bg-gray-200 text-xs">
-        {ddayToString(dday)}
+        {dayleftToDday(dayleft)}
       </span>
     </div>
   );
