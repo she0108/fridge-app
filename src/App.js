@@ -18,10 +18,13 @@ function App() {
     }
   }, [items]);
 
-  function addItem(name, date) {
+  function addItem(name, date, storage, category) {
     let newItems;
     setItems((items) => {
-      newItems = [...items, { name: name, date: date }];
+      newItems = [
+        ...items,
+        { name: name, date: date, storage: storage, category: category },
+      ];
       saveItems(newItems);
       return newItems;
     });
