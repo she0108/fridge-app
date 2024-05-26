@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import FilterBar from "./components/FilterBar";
 import SearchBar from "./components/SearchBar";
-import Title from "./components/Title";
+import Header from "./components/Header";
 import FoodList from "./components/FoodList";
 import AddModal from "./components/AddModal";
+import { CATEGORY, STORAGE } from "./data/filter";
 
 function App() {
   const [items, setItems] = useState(null);
+  const [filter, setFilter] = useState({ storage: "전체", category: "전체" });
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -38,14 +40,31 @@ function App() {
     console.log("delete item");
   }
 
+  function selectStorageFilter(selected) {
+    if (filter.storage !== selected)
+      setFilter((prev) => ({ ...prev, storage: selected }));
+  }
+
+  function selectCategoryFilter(selected) {
+    if (filter.category !== selected)
+      setFilter((prev) => ({ ...prev, category: selected }));
+  }
+
   return (
     <div className="w-screen min-h-screen relative p-5 flex flex-col gap-4">
-      <Title />
+      <Header />
       <SearchBar />
-      <FilterBar name="보관" tags={["전체", "냉장", "냉동", "실온"]} />
+      <FilterBar
+        name="보관"
+        tags={STORAGE}
+        selected={filter.storage}
+        selectFilter={selectStorageFilter}
+      />
       <FilterBar
         name="종류"
-        tags={["전체", "과일/채소", "정육/계란", "유제품"]}
+        tags={CATEGORY}
+        selected={filter.category}
+        selectFilter={selectCategoryFilter}
       />
       <section id="button-group" className="flex flex-row justify-end gap-2">
         <button
@@ -61,7 +80,7 @@ function App() {
           삭제
         </button>
       </section>
-      <FoodList items={items} />
+      <FoodList items={items} filter={filter} />
       {isOpen && <AddModal add={addItem} close={() => setIsOpen(false)} />}
     </div>
   );

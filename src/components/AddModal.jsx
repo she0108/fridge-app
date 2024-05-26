@@ -9,7 +9,7 @@ export default function AddModal({ add, close }) {
   const [category, setCategory] = useState(null);
 
   function handleAddClick() {
-    add(name, date);
+    add(name, date, storage, category);
     close();
   }
 
@@ -38,6 +38,7 @@ export default function AddModal({ add, close }) {
         <div className="flex flex-row">
           <label className="w-16 mr-2">이름</label>
           <input
+            required
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -47,6 +48,7 @@ export default function AddModal({ add, close }) {
         <div className="flex flex-row justify-stretch">
           <label className="w-16 mr-2">유통기한</label>
           <input
+            required
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
