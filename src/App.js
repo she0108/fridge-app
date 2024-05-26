@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import FoodList from "./components/FoodList";
 import AddModal from "./components/AddModal";
 import { CATEGORY, STORAGE } from "./data/filter";
+import Drawer from "./components/Drawer";
 
 function App() {
   const [items, setItems] = useState(null);
@@ -51,7 +52,7 @@ function App() {
   }
 
   return (
-    <div className="w-screen min-h-screen relative p-5 flex flex-col gap-4">
+    <div className="w-screen min-h-dvh relative p-5 flex flex-col gap-3">
       <Header />
       <SearchBar />
       <FilterBar
@@ -81,7 +82,11 @@ function App() {
         </button>
       </section>
       <FoodList items={items} filter={filter} />
-      {isOpen && <AddModal add={addItem} close={() => setIsOpen(false)} />}
+      {isOpen && (
+        <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+          <AddModal add={addItem} close={() => setIsOpen(false)} />
+        </Drawer>
+      )}
     </div>
   );
 }

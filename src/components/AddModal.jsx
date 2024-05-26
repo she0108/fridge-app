@@ -22,88 +22,83 @@ export default function AddModal({ add, close }) {
   }
 
   return (
-    <section
-      id="add-modal"
-      className="absolute left-0 top-0 w-full h-full bg-gray-500/30 flex justify-center items-center"
-    >
-      <div className="w-2/3 bg-white rounded-lg flex flex-col gap-1 p-4">
-        <button onClick={close} className="ml-auto">
-          X
-        </button>
-        <img
-          src="icons/default-food.png"
-          alt="default icon"
-          className="w-36 h-36 mx-auto"
+    <div className="w-3/4 bg-white rounded-lg flex flex-col gap-1 p-4">
+      <button onClick={close} className="ml-auto">
+        X
+      </button>
+      <img
+        src="icons/default-food.png"
+        alt="default icon"
+        className="w-36 h-36 mx-auto"
+      />
+      <div className="flex flex-row">
+        <label className="w-16 mr-2">이름</label>
+        <input
+          required
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-36"
         />
-        <div className="flex flex-row">
-          <label className="w-16 mr-2">이름</label>
-          <input
-            required
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-36"
-          />
-        </div>
-        <div className="flex flex-row justify-stretch">
-          <label className="w-16 mr-2">유통기한</label>
-          <input
-            required
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="w-36"
-          />
-        </div>
-        <div>
-          <label>보관방법</label>
-          {STORAGE.map((item) =>
-            storage === item ? (
-              <button
-                key={item}
-                className="px-1.5 py-0.5 rounded-full text-sm bg-gray-300"
-              >
-                {item}
-              </button>
-            ) : (
-              <button
-                key={item}
-                onClick={() => handleStorageClick(item)}
-                className="px-1.5 py-0.5 rounded-full text-sm bg-gray-100"
-              >
-                {item}
-              </button>
-            )
-          )}
-        </div>
-        <div>
-          <label>종류</label>
-          {CATEGORY.map((item) =>
-            category === item ? (
-              <button
-                key={item}
-                className="px-1.5 py-0.5 rounded-full text-sm bg-gray-300"
-              >
-                {item}
-              </button>
-            ) : (
-              <button
-                key={item}
-                onClick={() => handleCategoryClick(item)}
-                className="px-1.5 py-0.5 rounded-full text-sm bg-gray-100"
-              >
-                {item}
-              </button>
-            )
-          )}
-        </div>
-        <button
-          onClick={handleAddClick}
-          className="px-1.5 py-0.5 mt-1 mx-auto rounded-lg bg-gray-200 text-sm"
-        >
-          추가
-        </button>
       </div>
-    </section>
+      <div className="flex flex-row justify-stretch">
+        <label className="w-16 mr-2">유통기한</label>
+        <input
+          required
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="w-36"
+        />
+      </div>
+      <div>
+        <label className="w-16 mr-2">보관방법</label>
+        {STORAGE.map((item) =>
+          storage === item ? (
+            <button
+              key={item}
+              className="px-1.5 py-0.5 rounded-full text-sm bg-gray-300"
+            >
+              {item}
+            </button>
+          ) : (
+            <button
+              key={item}
+              onClick={() => handleStorageClick(item)}
+              className="px-1.5 py-0.5 rounded-full text-sm bg-gray-100"
+            >
+              {item}
+            </button>
+          )
+        )}
+      </div>
+      <div>
+        <label className="w-16 mr-2">종류</label>
+        {CATEGORY.map((item) =>
+          category === item ? (
+            <button
+              key={item}
+              className="px-1.5 py-0.5 rounded-full text-sm bg-gray-300"
+            >
+              {item}
+            </button>
+          ) : (
+            <button
+              key={item}
+              onClick={() => handleCategoryClick(item)}
+              className="px-1.5 py-0.5 rounded-full text-sm bg-gray-100"
+            >
+              {item}
+            </button>
+          )
+        )}
+      </div>
+      <button
+        onClick={handleAddClick}
+        className="px-1.5 py-0.5 mt-1 mx-auto rounded-lg bg-gray-200 text-sm"
+      >
+        추가
+      </button>
+    </div>
   );
 }

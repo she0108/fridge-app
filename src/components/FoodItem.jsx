@@ -2,7 +2,6 @@ import { calculateDaysRemaining } from "../utils/date";
 
 function getDday(date) {
   const daysRemaining = calculateDaysRemaining(date);
-  console.log(daysRemaining);
   if (daysRemaining > 0) return `D-${daysRemaining}`;
   else if (daysRemaining < 0) return `D+${-daysRemaining}`;
   else return `D-DAY`;
