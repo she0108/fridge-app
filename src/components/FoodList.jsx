@@ -8,7 +8,7 @@ export default function FoodList({ items }) {
   return (
     <section id="food-list" className="grid grid-cols-3 gap-3">
       {items.map((item) => (
-        <FoodItem name={item.name} dayleft={item.dayleft} />
+        <FoodItem name={item.name} date={item.date} />
       ))}
     </section>
   );

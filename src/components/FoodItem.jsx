@@ -1,10 +1,14 @@
-export default function FoodItem({ name, dayleft }) {
-  function dayleftToDday(dayleft) {
-    if (dayleft > 0) return `D-${dayleft}`;
-    else if (dayleft < 0) return `D+${-dayleft}`;
-    else return `D-DAY`;
-  }
+import { calculateDaysRemaining } from "../utils/date";
 
+function getDday(date) {
+  const daysRemaining = calculateDaysRemaining(date);
+  console.log(daysRemaining);
+  if (daysRemaining > 0) return `D-${daysRemaining}`;
+  else if (daysRemaining < 0) return `D+${-daysRemaining}`;
+  else return `D-DAY`;
+}
+
+export default function FoodItem({ name, date }) {
   return (
     <div
       id="food-item"
@@ -17,7 +21,7 @@ export default function FoodItem({ name, dayleft }) {
       />
       <p className="text-base font-medium text-center mb-1">{name}</p>
       <span className="px-1.5 rounded-full bg-gray-200 text-xs">
-        {dayleftToDday(dayleft)}
+        {getDday(date)}
       </span>
     </div>
   );
