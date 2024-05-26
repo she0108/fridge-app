@@ -3,7 +3,7 @@ import FilterBar from "./components/FilterBar";
 import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
 import FoodList from "./components/FoodList";
-import AddModal from "./components/AddModal";
+import DrawerContent from "./components/DrawerContent";
 import { CATEGORY, STORAGE } from "./data/filter";
 import Drawer from "./components/Drawer";
 
@@ -84,7 +84,7 @@ function App() {
       <FoodList items={items} filter={filter} />
       {isOpen && (
         <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-          <AddModal add={addItem} close={() => setIsOpen(false)} />
+          <DrawerContent add={addItem} close={() => setIsOpen(false)} />
         </Drawer>
       )}
     </div>
