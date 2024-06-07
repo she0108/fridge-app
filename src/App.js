@@ -6,6 +6,7 @@ import FoodList from "./components/FoodList";
 import DrawerContent from "./components/DrawerContent";
 import { CATEGORY, STORAGE } from "./data/filter";
 import Drawer from "./components/Drawer";
+import { Provider } from "jotai";
 
 function App() {
   const [items, setItems] = useState(null);
@@ -52,42 +53,44 @@ function App() {
   }
 
   return (
-    <div className="w-screen min-h-dvh relative p-5 flex flex-col gap-3">
-      <Header />
-      <SearchBar />
-      <FilterBar
-        name="보관"
-        tags={STORAGE}
-        selected={filter.storage}
-        selectFilter={selectStorageFilter}
-      />
-      <FilterBar
-        name="종류"
-        tags={CATEGORY}
-        selected={filter.category}
-        selectFilter={selectCategoryFilter}
-      />
-      <section id="button-group" className="flex flex-row justify-end gap-2">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="px-1.5 py-0.5 rounded-lg bg-gray-200 text-sm"
-        >
-          추가
-        </button>
-        <button
-          onClick={deleteItem}
-          className="px-1.5 py-0.5 rounded-lg bg-gray-200 text-sm"
-        >
-          삭제
-        </button>
-      </section>
-      <FoodList items={items} filter={filter} />
-      {isOpen && (
-        <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-          <DrawerContent add={addItem} close={() => setIsOpen(false)} />
-        </Drawer>
-      )}
-    </div>
+    <Provider>
+      <div className="w-screen min-h-dvh relative p-5 flex flex-col gap-3">
+        <Header />
+        <SearchBar />
+        <FilterBar
+          name="보관"
+          tags={STORAGE}
+          selected={filter.storage}
+          selectFilter={selectStorageFilter}
+        />
+        <FilterBar
+          name="종류"
+          tags={CATEGORY}
+          selected={filter.category}
+          selectFilter={selectCategoryFilter}
+        />
+        <section id="button-group" className="flex flex-row justify-end gap-2">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="px-1.5 py-0.5 rounded-lg bg-gray-200 text-sm"
+          >
+            추가
+          </button>
+          <button
+            onClick={deleteItem}
+            className="px-1.5 py-0.5 rounded-lg bg-gray-200 text-sm"
+          >
+            삭제
+          </button>
+        </section>
+        <FoodList items={items} filter={filter} />
+        {isOpen && (
+          <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+            <DrawerContent add={addItem} close={() => setIsOpen(false)} />
+          </Drawer>
+        )}
+      </div>
+    </Provider>
   );
 }
 

@@ -38,7 +38,7 @@ export default function AddModal({ add, close }) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="grow"
+          className="grow bg-gray-200 rounded"
         />
       </div>
       <div className="flex flex-row justify-stretch mb-4">
@@ -73,7 +73,7 @@ export default function AddModal({ add, close }) {
         )}
       </div>
       <div className="flex flex-row justify-stretch items-start mb-4 gap-2">
-        <label className="w-16 mr-2">종류</label>
+        <label className="w-16 mr-2 shrink-0">종류</label>
         <div className="flex flex-row flex-wrap gap-2">
           {CATEGORY.map((item) =>
             category === item ? (
